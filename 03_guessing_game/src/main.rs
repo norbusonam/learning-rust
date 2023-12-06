@@ -17,11 +17,8 @@ fn main() {
         .read_line(&mut guess)
         .expect("Failed to read line");
 
-    // clean up user input
-    guess = guess.trim().to_string();
-
     // convert user input to number
-    let guess: u32 = guess.parse().expect("Please type a number!");
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
     // tell the user if the guess was right
     match guess.cmp(&random_number) {
