@@ -1,4 +1,5 @@
 use rand::Rng;
+use std::cmp::Ordering;
 use std::io;
 
 fn main() {
@@ -19,6 +20,13 @@ fn main() {
     // clean up user input
     guess = guess.trim().to_string();
 
-    // tell user what they guessed
-    println!("You guessed {guess}, the answer was {random_number}");
+    // convert user input to number
+    let guess: u32 = guess.parse().expect("Please type a number!");
+
+    // tell the user if the guess was right
+    match guess.cmp(&random_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!"),
+    }
 }
