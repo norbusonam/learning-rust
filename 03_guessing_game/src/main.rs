@@ -18,7 +18,13 @@ fn main() {
             .expect("Failed to read line");
 
         // convert user input to number
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("That's not a number!");
+                continue;
+            }
+        };
 
         // tell the user if the guess was right
         match guess.cmp(&random_number) {
